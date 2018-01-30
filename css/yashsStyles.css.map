@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,WAAY;EACR,cAAc,EAAE,kBAAkB;EAClC,KAAK,EAAE,eAAe;;AAG1B,YAAa;EACT,SAAS,EAAE,IAAI",
+"sources": ["../sass/yashsStyles.scss"],
+"names": [],
+"file": "yashsStyles.css"
+}
