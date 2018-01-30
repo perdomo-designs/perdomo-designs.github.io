@@ -1,8 +1,40 @@
+// ALL PAGES
 .fh5co-logo {
     text-transform: initial !important;
     color: grey !important;
 }
 
-.descriptors {
-    font-size: 30px;
+// HOME Page
+#home {
+    
+    .descriptors {
+        font-size: 30px;
+    }
+    
+    #portfoliolist .portfolio {
+        display: inherit;
+        width: 32.83%;
+        margin-left: 0.25%;
+        margin-right: 0.25%;
+        margin-bottom: 7px;
+        max-height: 375px;
+    }
+}
+
+// PORTFOLIO Page
+#portfolio {
+    header {
+        padding-top: 3em;
+        padding-bottom: 2em;
+    }
+
+    #piecePrice {
+        margin-bottom: 0.5em;
+        margin-top: 1.5em;
+    }
+
+    button.buy {
+        border: 1px solid grey;
+        font-size: 20px;
+    }
 }
