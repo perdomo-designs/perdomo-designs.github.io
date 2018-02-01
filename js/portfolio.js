@@ -3,14 +3,47 @@
     'use strict';
 
     // GLOBAL Variables
-    const userUid = '4zzJjUMooFa9boMCG1olQdwzc3s1';
+    const artistUid = '4zzJjUMooFa9boMCG1olQdwzc3s1';
 
-    // Start Program
+
+    // SETUP Event Listeners
+    $('.buy').click(function() {
+        $('.buy').hide();
+        $('.purchaseForm').show();
+    })
+    $('.purchaseFormSubmit').click(function() {
+
+        if($('#formPhone').val().length < 10) {
+            alert('The phone number must be ')
+        } else {
+            let purchaseForm = {
+                name: $('#formName').val(),
+                phone: $('#formPhone').val(),
+                email: $('#formEmail').val(),
+                artistUid: artistUid
+            }
+
+            console.log(purchaseForm);
+
+            $.post('https://us-central1-art-auction-2ef27.cloudfunctions.net/submitPurchaseForm', purchaseForm,function(data, status) {
+                console.log(status)
+                if(status === 'success') {
+                    cleanForm()
+                    alert('Thanks! We\'ll contact you shortly');
+                }
+            })
+
+        }
+        
+    })
+
+    // START Program
     getAndUpdatePostDetails();
+
 
     // All Functions
     function getAndUpdatePostDetails() {
-        $.get('https://us-central1-art-auction-2ef27.cloudfunctions.net/getArtistsPosts?uid=' + userUid,function(data, status) {
+        $.get('https://us-central1-art-auction-2ef27.cloudfunctions.net/getArtistsPosts?uid=' + artistUid,function(data, status) {
 
             let id = getUrlParameter('id');
             console.log(data[id])
@@ -42,5 +75,11 @@
             }
         }
     };
+
+    var cleanForm = function() {
+        $('#formName').val('')
+        $('#formPhone').val('')
+        $('#formEmail').val('')
+    }
 
 }());
