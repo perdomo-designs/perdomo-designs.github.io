@@ -3,16 +3,25 @@
     'use strict';
 
     // GLOBAL Variables
-    const userUid = '4zzJjUMooFa9boMCG1olQdwzc3s1';
+    let userUid = CONFIG.uid;
+    let baseUrl = '';
 
     // Start Program
     getArtistsPosts();
+    CONFIG.copy._updateHomepageCopy();
+    CONFIG.copy._headerFooterComponents();
 
     // All Functions
     function getArtistsPosts() {
-        $.get('https://us-central1-art-auction-2ef27.cloudfunctions.net/getArtistsPosts?uid=' + userUid,function(data, status) {
-            createPosts(data);
-        });
+        if(CONFIG.uid){
+            baseUrl = CONFIG.baseUrl;
+
+            $.get(baseUrl + '/getArtistsPosts?uid=' + userUid,function(data, status) {
+                createPosts(data);
+            });
+        } else {
+            console.log("No baseUrl defined");
+        }
     }
 
     function createPosts(posts) {
@@ -29,7 +38,7 @@
             ];
 
             let postHTML = '<div class="portfolio all ' + post.category + '" data-cat="logo">' +
-                '<a href="/portfolio?id=' + key + '" class="portfolio-wrapper">' +
+                '<a href="' + CONFIG.subdomain + '/portfolio?id=' + key + '" class="portfolio-wrapper">' +
                     '<img src="' + postImgUrl + '" alt="" />' +
                 '</a>' +
             '</div>';
